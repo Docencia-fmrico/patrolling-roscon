@@ -23,7 +23,7 @@ jobs:
       - name: build and test
         uses: ros-tooling/action-ros-ci@0.2.6
         with:
-          package-name: bump_stop
+          package-name: patrolling_bt
           target-ros2-distro: humble
           import-token: ${{ secrets.WORKFLOW_TOKEN }}
           colcon-defaults: |
