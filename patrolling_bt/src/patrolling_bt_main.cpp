@@ -34,11 +34,11 @@ int main(int argc, char * argv[])
   BT::BehaviorTreeFactory factory;
   BT::SharedLibrary loader;
 
-  factory.registerFromPlugin(loader.getOSName("br2_patrol_bt_node"));
-  factory.registerFromPlugin(loader.getOSName("br2_move_bt_node"));
-  factory.registerFromPlugin(loader.getOSName("br2_get_waypoint_bt_node"));
+  factory.registerFromPlugin(loader.getOSName("patrol_node"));
+  factory.registerFromPlugin(loader.getOSName("move_node"));
+  factory.registerFromPlugin(loader.getOSName("get_waypoint_node"));
 
-  std::string pkgpath = ament_index_cpp::get_package_share_directory("br2_bt_patrolling");
+  std::string pkgpath = ament_index_cpp::get_package_share_directory("patrolling_bt_main");
   std::string xml_file = pkgpath + "/behavior_tree_xml/patrolling.xml";
 
   auto blackboard = BT::Blackboard::create();
