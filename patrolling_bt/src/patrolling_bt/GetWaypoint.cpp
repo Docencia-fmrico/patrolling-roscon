@@ -42,11 +42,6 @@ GetWaypoint::GetWaypoint(
   wp.pose.orientation.w = 1.0;
 
   //Con el mapa se obtiene los waypoints
-  // initial wp
-  wp.pose.position.x = 3.67;
-  wp.pose.position.y = -0.24;
-  finish_point_ = wp;
-
   // wp1
   wp.pose.position.x = 3.67;
   wp.pose.position.y = -0.24;
@@ -77,14 +72,10 @@ BT::NodeStatus
 GetWaypoint::tick()
 {
   std::string id;
-  getInput("wp_id", id);
-
-  if (id == "finish") {
-    setOutput("waypoint", finish_point_);
-  } else {
-    setOutput("waypoint", waypoints_[current_++]);
-    current_ = current_ % waypoints_.size();
-  }
+  
+  setOutput("waypoint", waypoints_[current_++]);
+  current_ = current_ % waypoints_.size();
+  
   return BT::NodeStatus::SUCCESS;
 }
 
