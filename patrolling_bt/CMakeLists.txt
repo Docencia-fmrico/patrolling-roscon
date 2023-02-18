@@ -1,16 +1,14 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.5)
 project(patrolling_bt)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
-set(CMAKE_BUILD_TYPE Debug)
 
 set(CMAKE_CONFIG_PATH ${CMAKE_MODULE_PATH}  "${CMAKE_CURRENT_LIST_DIR}/cmake")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CONFIG_PATH}")
 
 # find dependencies
-find_package(ament_cmake REQUIRED)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclcpp_lifecycle REQUIRED)
@@ -22,25 +20,37 @@ find_package(geometry_msgs REQUIRED)
 find_package(nav2_msgs REQUIRED)
 find_package(ament_index_cpp REQUIRED)
 
+find_package(ZMQ)
+if(ZMQ_FOUND)
+    message(STATUS "ZeroMQ found.")
+    add_definitions(-DZMQ_FOUND)
+else()
+  message(WARNING "ZeroMQ NOT found. Not including PublisherZMQ.")
+endif()
+
 include_directories(include ${PROJECT_NAME})
 
 set(CMAKE_CXX_STANDARD 17)
 
 set(dependencies
-    rclcpp
-    rclcpp_lifecycle
-    rclcpp_action
-    behaviortree_cpp_v3
-    action_msgs
-    lifecycle_msgs
-    geometry_msgs
-    nav2_msgs
-    ament_index_cpp
+  rclcpp
+  rclcpp_lifecycle
+  rclcpp_action
+  behaviortree_cpp_v3
+  action_msgs
+  lifecycle_msgs
+  geometry_msgs
+  nav2_msgs
+  ament_index_cpp
 )
+
+include_directories(include ${ZMQ_INCLUDE_DIRS})
 
 add_library(patrol_node SHARED src/patrolling_bt/Patrol.cpp)
 add_library(move_node SHARED src/patrolling_bt/Move.cpp)
 add_library(get_waypoint_node SHARED src/patrolling_bt/GetWaypoint.cpp)
+
+
 list(APPEND plugin_libs
   patrol_node
   move_node
@@ -68,9 +78,10 @@ install(DIRECTORY include/
   DESTINATION include/
 )
 
-install(DIRECTORY behavior_tree_xml launch
+install(DIRECTORY behavior_tree_xml
   DESTINATION share/${PROJECT_NAME}
 )
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights

@@ -12,78 +12,43 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#ifndef PATROLLING_BT__GETWAYPOINT_HPP_
+#define PATROLLING_BT__GETWAYPOINT_HPP_
+
 #include <string>
-#include <iostream>
 #include <vector>
 
-#include "patrolling_bt/GetWaypoint.hpp"
-
 #include "behaviortree_cpp_v3/behavior_tree.h"
+#include "behaviortree_cpp_v3/bt_factory.h"
 
 #include "geometry_msgs/msg/pose_stamped.hpp"
-
-#include "rclcpp/rclcpp.hpp"
 
 namespace patrolling_bt
 {
 
-int GetWaypoint::current_ = 0;
-
-GetWaypoint::GetWaypoint(
-  const std::string & xml_tag_name,
-  const BT::NodeConfiguration & conf)
-: BT::ActionNodeBase(xml_tag_name, conf)
+class GetWaypoint : public BT::ActionNodeBase
 {
-  rclcpp::Node::SharedPtr node;
-  config().blackboard->get("node", node);
+public:
+  explicit GetWaypoint(
+    const std::string & xml_tag_name,
+    const BT::NodeConfiguration & conf);
 
-  geometry_msgs::msg::PoseStamped wp;
-  wp.header.frame_id = "map";
-  wp.pose.orientation.w = 1.0;
+  void halt();
+  BT::NodeStatus tick();
 
-  //Con el mapa se obtiene los waypoints
-  // wp1
-  wp.pose.position.x = 3.67;
-  wp.pose.position.y = -0.24;
-  recharge_point_ = wp;
+  static BT::PortsList providedPorts()
+  {
+    return BT::PortsList(
+      {
+        BT::OutputPort<geometry_msgs::msg::PoseStamped>("waypoint")
+      });
+  }
 
-  // wp2
-  wp.pose.position.x = 1.07;
-  wp.pose.position.y = -12.38;
-  waypoints_.push_back(wp);
+private:
+  std::vector<geometry_msgs::msg::PoseStamped> waypoints_;
+  static int current_;
+};
 
-  // wp3
-  wp.pose.position.x = -5.32;
-  wp.pose.position.y = -8.85;
-  waypoints_.push_back(wp);
+}  // namespace patrolling_bt
 
-  // wp4
-  wp.pose.position.x = -0.56;
-  wp.pose.position.y = 0.24;
-  waypoints_.push_back(wp);
-}
-
-void
-GetWaypoint::halt()
-{
-}
-
-BT::NodeStatus
-GetWaypoint::tick()
-{
-  std::string id;
-  getInput("wp_id", id);
-
-  setOutput("waypoint", waypoints_[current_++]);
-  current_ = current_ % waypoints_.size();
-
-  return BT::NodeStatus::SUCCESS;
-}
-
-}  // namespace br2_bt_patrolling
-
-#include "behaviortree_cpp_v3/bt_factory.h"
-BT_REGISTER_NODES(factory)
-{
-  factory.registerNodeType<patrolling_bt::GetWaypoint>("GetWaypoint");
-}
+#endif  // PATROLLING_BT__GETWAYPOINT_HPP_
