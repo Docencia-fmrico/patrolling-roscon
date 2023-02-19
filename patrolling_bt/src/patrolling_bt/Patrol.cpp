@@ -58,6 +58,9 @@ Patrol::tick()
   auto elapsed = node_->now() - start_time_;
 
   if (elapsed < 15s) {
+    // recorre los 15 segundos pero no gira y 
+    // con este publicador aqui no se si funciona
+    vel_pub_->publish(vel_msgs);
     return BT::NodeStatus::RUNNING;
   } else {
     return BT::NodeStatus::SUCCESS;

@@ -42,24 +42,29 @@ GetWaypoint::GetWaypoint(
   wp.pose.orientation.w = 1.0;
 
   //Con el mapa se obtiene los waypoints
+  //final
+  wp.pose.position.x = -4.99;
+  wp.pose.position.y = -1.12;
+  final_goal_ = wp;
+
   // wp1
-  wp.pose.position.x = 3.67;
-  wp.pose.position.y = -0.24;
+  wp.pose.position.x = 6.79;
+  wp.pose.position.y = -2.89;
   waypoints_.push_back(wp);
 
   // wp2
-  wp.pose.position.x = 1.07;
-  wp.pose.position.y = -12.38;
+  wp.pose.position.x = 0.15;
+  wp.pose.position.y = 2.18;
   waypoints_.push_back(wp);
 
   // wp3
-  wp.pose.position.x = -5.32;
-  wp.pose.position.y = -8.85;
+  wp.pose.position.x = -4.86;
+  wp.pose.position.y = -3.23;
   waypoints_.push_back(wp);
 
   // wp4
-  wp.pose.position.x = -0.56;
-  wp.pose.position.y = 0.24;
+  wp.pose.position.x = -5.33;
+  wp.pose.position.y = -0.02;
   waypoints_.push_back(wp);
 }
 
@@ -71,11 +76,14 @@ GetWaypoint::halt()
 BT::NodeStatus
 GetWaypoint::tick()
 {
-  std::string id;
-  
-  setOutput("waypoint", waypoints_[current_++]);
-  current_ = current_ % waypoints_.size();
-  
+  if (current_ == 4) {
+    //Ir a una posicion, publicar un ID de finalizar y return FAILURE en 
+    //Move para terminar el programa o terminar aqui con return FAILRE
+    setOutput("waypoint", final_goal_);
+  } else {
+    setOutput("waypoint", waypoints_[current_++]);
+    current_ = current_ % waypoints_.size();
+  }
   return BT::NodeStatus::SUCCESS;
 }
 

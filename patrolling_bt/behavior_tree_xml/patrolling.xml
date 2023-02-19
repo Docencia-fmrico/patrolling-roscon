@@ -12,7 +12,7 @@
     </BehaviorTree>
     <!-- ////////// -->
     <TreeNodesModel>
-        <Action ID="BatteryChecker"/>
+
         <Action ID="GetWaypoint">
             <output_port name="waypoint"/>
         </Action>
@@ -20,8 +20,6 @@
             <input_port name="goal"/>
         </Action>
         <Action ID="Patrol"/>
-        <Action ID="Recharge"/>
-        <Action ID="TrackObjects"/>
     </TreeNodesModel>
     <!-- ////////// -->
 </root>
