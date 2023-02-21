@@ -35,13 +35,13 @@ Patrol::Patrol(
 {
   config().blackboard->get("node", node_);
 
-  vel_pub_ = node_->create_publisher<geometry_msgs::msg::Twist>("/output_vel", 100);
+  vel_pub_ = node_->create_publisher<geometry_msgs::msg::Twist>("/nav_vel", 100);
 }
 
 void
 Patrol::halt()
 {
-  std::cout << "Patrol halt" << std::endl;
+  std::cout << "PATROL HALT" << std::endl;
 }
 
 BT::NodeStatus
@@ -58,9 +58,6 @@ Patrol::tick()
   auto elapsed = node_->now() - start_time_;
 
   if (elapsed < 15s) {
-    // recorre los 15 segundos pero no gira y 
-    // con este publicador aqui no se si funciona
-    vel_pub_->publish(vel_msgs);
     return BT::NodeStatus::RUNNING;
   } else {
     return BT::NodeStatus::SUCCESS;
