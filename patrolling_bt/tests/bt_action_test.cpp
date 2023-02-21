@@ -65,6 +65,7 @@ class Nav2FakeServer : public rclcpp::Node
   using NavigateToPose = nav2_msgs::action::NavigateToPose;
   using GoalHandleNavigateToPose = rclcpp_action::ServerGoalHandle<NavigateToPose>;
 
+
 public:
   Nav2FakeServer()
   : Node("nav2_fake_server_node") {}
@@ -321,6 +322,7 @@ TEST(bt_action, get_waypoint_btn)
     ASSERT_NEAR(waypoints[3].pose.position.y, -0.02, 0.0000001);
   }
 }
+
 
 int main(int argc, char ** argv)
 {
