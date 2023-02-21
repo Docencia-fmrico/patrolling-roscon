@@ -15,4 +15,22 @@ Puntuación (sobre 10):
 * +8 correcto funcionamiento en el robot simulado.
 * +2 Readme.md bien documentado con videos.
 * -3 Warnings o que no pase los tests.
-![árbol](https://github.com/Docencia-fmrico/patrolling-roscon/blob/main/BT.png)
+
+
+## Grupo Roscon
+
+Integrantes:
+* Oriana Acosta
+* Jaime Avilleira
+* Almudena Moreno
+* Carlota Vera
+
+1. El primer paso es determinar el comportamiento del programa a través del siguiente Behaviour Tree:
+
+  ![árbol](https://github.com/Docencia-fmrico/patrolling-roscon/blob/main/BT.png)
+
+El comportamiento consiste en ir a un número determinado de waypoints ubicados en el mapa haciendo uso de Nav2.
+El árbol de comportamiento está formado por un 'Sequence' que tiene tres acciones.
+'GetWaypoints' que obtiene las coordenadas del siguiente waypoint siempre que esté dentro del rango. Si ya ha ido a todos los waypoints definido, va a la posición final. En ambos casos, devuelve running. Devuelve 'failure' cuando ya ha alcanzado la posición final.
+'Move' que recibe como input las coordenadas del siguiente waypoint y las pasa a Nav2. Espera el resultado de la navegación y cuando llega a la posición indicada, devuelve success. Mientras, devuelve running.
+Cuando ejecuta 'Patrol', gira durante 15 segundos y mientras devuelve running. Una vez pasados estos segundos, devuelve success y vuelve a empezar el sequence. 
