@@ -45,6 +45,7 @@ public:
   }
 
 private:
+  geometry_msgs::msg::PoseStamped final_goal_;
   std::vector<geometry_msgs::msg::PoseStamped> waypoints_;
   static int current_;
 };
