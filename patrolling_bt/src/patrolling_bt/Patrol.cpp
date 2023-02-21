@@ -47,12 +47,14 @@ Patrol::halt()
 BT::NodeStatus
 Patrol::tick()
 {
+  RCLCPP_INFO(node_->get_logger(), "[PATROL]");
+
   if (status() == BT::NodeStatus::IDLE) {
     start_time_ = node_->now();
   }
 
   geometry_msgs::msg::Twist vel_msgs;
-  vel_msgs.angular.z = 0.5;
+  vel_msgs.angular.z = 0.8;
   vel_pub_->publish(vel_msgs);
 
   auto elapsed = node_->now() - start_time_;
