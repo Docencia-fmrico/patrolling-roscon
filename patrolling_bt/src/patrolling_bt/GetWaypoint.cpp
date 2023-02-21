@@ -28,6 +28,7 @@ namespace patrolling_bt
 {
 
 int GetWaypoint::current_ = 0;
+int waypoints_number_ = 4;
 
 GetWaypoint::GetWaypoint(
   const std::string & xml_tag_name,
@@ -42,9 +43,9 @@ GetWaypoint::GetWaypoint(
   wp.pose.orientation.w = 1.0;
 
   //Con el mapa se obtiene los waypoints
-  //final
-  wp.pose.position.x = -4.99;
-  wp.pose.position.y = -1.12;
+  // Wp final
+  wp.pose.position.x = -1.85;
+  wp.pose.position.y = -1.07;
   final_goal_ = wp;
 
   // wp1
@@ -56,6 +57,7 @@ GetWaypoint::GetWaypoint(
   wp.pose.position.x = 0.15;
   wp.pose.position.y = 2.18;
   waypoints_.push_back(wp);
+
 
   // wp3
   wp.pose.position.x = -4.86;
@@ -76,13 +78,13 @@ GetWaypoint::halt()
 BT::NodeStatus
 GetWaypoint::tick()
 {
-  if (current_ == 4) {
-    //Ir a una posicion, publicar un ID de finalizar y return FAILURE en
-    //Move para terminar el programa o terminar aqui con return FAILRE
-    setOutput("waypoint", final_goal_);
-  } else {
+  if (current_ < waypoints_number_) {
     setOutput("waypoint", waypoints_[current_++]);
-    current_ = current_ % waypoints_.size();
+  } else if (current_ == waypoints_number_) { // On last waypoint
+    setOutput("waypoint", final_goal_);
+    current_++;
+  } else { // Arrived to final_goal_
+    return BT::NodeStatus::FAILURE;
   }
   return BT::NodeStatus::SUCCESS;
 }
