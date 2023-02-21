@@ -15,9 +15,8 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
 
+
 def generate_launch_description():
-  # Este launcher no funciona o al menos no me sale para ejecutarlo
-  # Ejecuto directamene con ros2 run patro....
     patrolling_cmd = Node(
         package='patrolling_bt',
         executable='patrolling_bt',

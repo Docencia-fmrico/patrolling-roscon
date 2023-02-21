@@ -77,7 +77,7 @@ BT::NodeStatus
 GetWaypoint::tick()
 {
   if (current_ == 4) {
-    //Ir a una posicion, publicar un ID de finalizar y return FAILURE en 
+    //Ir a una posicion, publicar un ID de finalizar y return FAILURE en
     //Move para terminar el programa o terminar aqui con return FAILRE
     setOutput("waypoint", final_goal_);
   } else {
