@@ -15,3 +15,4 @@ Puntuación (sobre 10):
 * +8 correcto funcionamiento en el robot simulado.
 * +2 Readme.md bien documentado con videos.
 * -3 Warnings o que no pase los tests.
+![árbol](https://github.com/Docencia-fmrico/patrolling-roscon/blob/main/BT.png)
