@@ -1,0 +1,5 @@
+[0.000000] (-) TimerEvent: {}
+[0.000185] (patrolling_bt) JobQueued: {'identifier': 'patrolling_bt', 'dependencies': OrderedDict([('patrolling_bt', '/home/amorenol/psc3_ws/src/patrolling-roscon/install/patrolling_bt')])}
+[0.000222] (patrolling_bt) JobStarted: {'identifier': 'patrolling_bt'}
+[0.027449] (patrolling_bt) JobEnded: {'identifier': 'patrolling_bt', 'rc': 0}
+[0.028125] (-) EventReactorShutdown: {}
