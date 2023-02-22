@@ -63,4 +63,4 @@ Se han diseñado una serie de test que , entre otras tareas, comprueban si son c
 
 ## DEMOSTRACIÓN
 
-[![VIDEO](https://i.ytimg.com/vi/Z9ddVyDX9ZY/hqdefault.jpg?sqp=-oaymwE2CPYBEIoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoZTAP&rs=AOn4CLBRwjkDoGL4b-hhY9UAjVcOTKInlA)]
+[![Alt text](https://img.youtube.com/vi/Z9ddVyDX9ZY/0.jpg)](https://www.youtube.com/watch?v=Z9ddVyDX9ZY)
