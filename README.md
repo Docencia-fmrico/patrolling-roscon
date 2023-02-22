@@ -56,6 +56,11 @@ Gira durante 15 segundos y mientras devuelve running. Una vez pasados estos segu
 
 ![code4](https://github.com/Docencia-fmrico/patrolling-roscon/blob/readme/Screenshot%20from%202023-02-22%2001-21-29.png)
 
+
+## [TESTS](https://github.com/Docencia-fmrico/patrolling-roscon/blob/readme/patrolling_bt/tests/bt_action_test.cpp)
+
+Se han diseñado una serie de test que , entre otras tareas, comprueban si son correctos los waypoints que se van a buscar.
+
 ## DEMOSTRACIÓN
 
 [![VIDEO](https://i.ytimg.com/vi/Z9ddVyDX9ZY/hqdefault.jpg?sqp=-oaymwE2CPYBEIoBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoZTAP&rs=AOn4CLBRwjkDoGL4b-hhY9UAjVcOTKInlA)]
