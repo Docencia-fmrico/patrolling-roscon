@@ -36,14 +36,22 @@ Cuyo comportamiento es:
 
 Obtiene las coordenadas del siguiente waypoint siempre que esté dentro del rango. Si ya ha ido a todos los waypoints definido, se dirige a la posición final. Devuelve 'failure' cuando ya ha alcanzado la posición final.
 
+![code1]()
+
+![code2]()
+
+Los waypoints elegidos se pueden ver en la siguiente imagen:
+
+![mapa](https://github.com/Docencia-fmrico/patrolling-roscon/blob/readme/waypoints.png)
+
 ### 2. [Move](https://github.com/Docencia-fmrico/patrolling-roscon/blob/main/patrolling_bt/src/patrolling_bt/Move.cpp)
 
 Recibe como input las coordenadas del siguiente waypoint y las pasa a Nav2. Espera el resultado de la navegación y cuando llega a la posición indicada, devuelve success. Mientras, devuelve running.
+
+![code3]()
 
 ### 3. [Patrol](https://github.com/Docencia-fmrico/patrolling-roscon/blob/main/patrolling_bt/src/patrolling_bt/Patrol.cpp)
 
 Gira durante 15 segundos y mientras devuelve running. Una vez pasados estos segundos, devuelve success y vuelve a empezar el sequence. 
 
-## MAPA
-
-![mapa]
+![code4]()
