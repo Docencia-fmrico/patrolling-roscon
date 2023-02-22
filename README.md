@@ -15,7 +15,6 @@ El robot debe funcionar en el robot Tiago simulado.
 
 ## INTEGRANTES
 
-Integrantes:
 * Oriana Acosta
 * Jaime Avilleira
 * Almudena Moreno
@@ -44,3 +43,7 @@ Recibe como input las coordenadas del siguiente waypoint y las pasa a Nav2. Espe
 ### 3. [Patrol](https://github.com/Docencia-fmrico/patrolling-roscon/blob/main/patrolling_bt/src/patrolling_bt/Patrol.cpp)
 
 Gira durante 15 segundos y mientras devuelve running. Una vez pasados estos segundos, devuelve success y vuelve a empezar el sequence. 
+
+## MAPA
+
+![mapa]
